@@ -24,8 +24,15 @@ app.get('/hello-world', (req, res) => {
 // Create
 app.post('/api/create', (req, res) => {
     (async () => {
-        var random = Math.random().toString(16).substring(2, 7).toUpperCase();
-        var item = "#QPI" + random;
+        var random = Math.random().toString(36).substring(2, 4);
+        var random1 = Math.random().toString(16).substring(4, 7).toUpperCase()  
+
+        var item = "#QPI" + random + random1;
+        var items = new Array();
+        items.push(item);
+        items.forEach(item => {
+          console.log(item);
+        });
         try {
           await db.collection('items').doc('item' + random).create({ID: item});
           return res.status(200).send(res.data);
